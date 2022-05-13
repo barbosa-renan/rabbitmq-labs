@@ -2,7 +2,7 @@
 
 var connectionFactory = new ConnectionFactory()
 {
-    Uri = new Uri(@"amqp://logUser:logPwd@127.0.0.1:5672/"),
+    Uri = new Uri(@"amqp://logUser:logPwd@127.0.0.1:5672/platform"),
     NetworkRecoveryInterval = TimeSpan.FromSeconds(10),
     AutomaticRecoveryEnabled = true
 };
@@ -11,9 +11,9 @@ using (var connection = connectionFactory.CreateConnection())
 {
     using (var channel = connection.CreateModel())
     {
-        channel.ExchangeDeclare(exchange: "amq.fanout", 
-            type: ExchangeType.Fanout, 
-            durable: true, 
+        channel.ExchangeDeclare(exchange: "amq.fanout",
+            type: ExchangeType.Fanout,
+            durable: true,
             autoDelete: false);
 
         byte[] messageBodyBytes = System.Text.Encoding.UTF8.GetBytes("{{ name:\"Renan\", github:\"https://github.com/barbosa-renan\" }}");
