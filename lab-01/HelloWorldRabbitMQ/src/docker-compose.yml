@@ -15,5 +15,11 @@ services:
     networks:
       - xrlabs_net
 
+  publisherapi:
+    image: ${DOCKER_REGISTRY-}publisherapi
+    build:
+      context: .
+      dockerfile: PublisherApi/Dockerfile
+
 networks:
   xrlabs_net:
